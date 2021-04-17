@@ -238,4 +238,4 @@ dmypy.json
 # Ignore all local history of files
 .history
 
-# config.ini
+config.ini
