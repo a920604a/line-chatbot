@@ -1,0 +1,26 @@
+<!--
+ * @Author: yuan
+ * @Date: 2021-04-15 02:55:55
+ * @LastEditTime: 2021-04-17 01:04:49
+ * @FilePath: /line-chatbot/templates/base.html
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+        <title> {{title}} </title>
+    {% else %}
+        <title>Flask App</title>
+    {% endif %}
+</head>
+<body>
+    {% include 'navbar.html'%}
+    
+    {% block content %}
+    <h1>Parent</h1>
+    {% endblock %}
+
+</body>
+        
+</html>

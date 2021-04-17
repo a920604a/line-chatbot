@@ -1,0 +1,7 @@
+Flask
+Flask-bootstrap
+scrapy
+certifi
+urllib3 
+line-bot-sdk
+gunicorn
