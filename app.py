@@ -1,7 +1,7 @@
 '''
 Author: yuan
 Date: 2021-04-14 03:24:03
-LastEditTime: 2021-04-17 01:25:39
+LastEditTime: 2021-04-18 08:23:20
 FilePath: /line-chatbot/app.py
 '''
 from flask import Flask, abort, render_template, request
@@ -10,30 +10,56 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import (MessageEvent, TextMessage)
 
 from config import Config
-from interface import (beverage, gossiping, movie, netflix,  # init_task()
-                       news, oil_price, ptt_beauty, ptt_soft_job, ptt_tech_job, rate, technews,  Factory)
+from interface import (gossiping, movie, netflix,  # init_task()
+                       tvbs_news, oil_price, ptt_beauty, ptt_soft_job, ptt_tech_job, rate, tech_news,
+                       beverage_50lan,
+                       beverage_coco, beverage_whitealley, beverage_milkshop,
+                       beverage_chingshin, beverage_maculife,
+                       beverage_presotea, beverage_dayungs,
+                       start_template, ptt_template, news_template, movie_template,
+                       beverage_template, beverage_template1, beverage_template2,
+                       Factory, Template_Factory)
 from my_dict import MyDict
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 config = Config()
 handler = config.handler
-# line_bot_api = config.line_bot_api
 
 
 class Bot:
     task_map = {
-        MyDict.news: news,
+        MyDict.tvbs_news: tvbs_news,
         MyDict.ptt_beauty: ptt_beauty,
         MyDict.ptt_soft_job: ptt_soft_job,
         MyDict.ptt_tech_job: ptt_tech_job,
         MyDict.gossiping: gossiping,
         MyDict.movie: movie,
         MyDict.netflix: netflix,
-        MyDict.technews: technews,
+        MyDict.tech_news: tech_news,
         MyDict.oil_price: oil_price,
         MyDict.rate: rate,
-        MyDict.beverage: beverage
+        MyDict.beverage_50lan: beverage_50lan,
+        MyDict.beverage_coco: beverage_coco,
+        MyDict.beverage_whitealley: beverage_whitealley,
+        MyDict.beverage_milkshop: beverage_milkshop,
+        # MyDict.beverage_comebuy: beverage_comebuy,
+        MyDict.beverage_chingshin: beverage_chingshin,
+        MyDict.beverage_maculife: beverage_maculife,
+        MyDict.beverage_presotea: beverage_presotea,
+        MyDict.beverage_dayungs: beverage_dayungs,
+
+    }
+
+    template_map = {
+        MyDict.start_word: start_template,
+        MyDict.ptt_template: ptt_template,
+        MyDict.news_template: news_template,
+        MyDict.movie_template: movie_template,
+        MyDict.beverage_template: beverage_template,
+        MyDict.beverage_template1: beverage_template1,
+        MyDict.beverage_template2: beverage_template2
+
     }
 
     def __init__(self, val):
@@ -42,18 +68,24 @@ class Bot:
     def get_fun(self):
         if self.val in Bot.task_map:
             action_fun = self.task_map.get(self.val)
-        else:
-            action_fun = 'default'
-        return Factory, action_fun
+            factory = Factory
+        elif self.val in Bot.template_map:
+            action_fun = self.template_map.get(self.val)
+            factory = Template_Factory
+        return factory, action_fun
+
+    def lower(self):
+        self.val = self.val.lower()
 
 
 @app.route("/")
 def index():
     # return "Hello, yuan !  No UI. This is LINE chatbot  "
     title = 'Web Chat Bot'
+    data = [v for k, v in vars(MyDict).items() if not k.startswith('__')]
     return render_template('index.html',
                            title=title,
-                           data=MyDict.show_attribute())
+                           data=data)
 
 
 @ app.route("/callback", methods=['POST'])
@@ -64,6 +96,7 @@ def callback():
     signature = request.headers['X_LINE_SIGNATURE']
     # get request body as texts
     body = request.get_data(as_text=True)
+    print(body)
     app.logger.info("Request body: " + body)
     try:
         # handle webhook body
@@ -78,11 +111,13 @@ def callback():
 def handle_message(event):
     print(f'event: {event}')
     message = event.message.text
+    print(message)
     bot = Bot(message)
     # factory is class name , action_func is method name
     factory_class, action_func = bot.get_fun()
     print(action_func.__name__)
-    task = factory_class(action_func, event)
+    print(factory_class)
+    task = factory_class(action_func, event)  # object
     action_func(task)
 
 

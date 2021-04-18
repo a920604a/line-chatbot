@@ -1,19 +1,13 @@
 <!--
  * @Author: yuan
  * @Date: 2021-04-15 02:55:47
- * @LastEditTime: 2021-04-17 01:24:13
+ * @LastEditTime: 2021-04-18 07:45:09
  * @FilePath: /line-chatbot/templates/index.html
 -->
-{% extends "bootstrap/base.html" %}
-{% block title %}This is an example page{% endblock %}
 
-{% block navbar %}
-{% include 'navbar.html' %}
-{% endblock %}
-
+{% include 'base.html' %}
 {% block content %}
-<h2>目前支援的關鍵字</h2>
-
+<h1>目前支援的關鍵字</h1>
 {% for d in data %}
 <p>{{d}}</p>
 {% endfor %}

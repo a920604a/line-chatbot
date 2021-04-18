@@ -1,7 +1,7 @@
 '''
 Author: yuan
 Date: 2021-04-15 04:08:41
-LastEditTime: 2021-04-17 03:01:46
+LastEditTime: 2021-04-17 15:58:28
 FilePath: /line-chatbot/serve.py
 '''
 
@@ -94,6 +94,7 @@ class Ptt():
         return int(page_number) + 1
 
 
+
 class News(Crawler):
     target_url = 'https://news.tvbs.com.tw/realtime'
 
@@ -130,7 +131,7 @@ class PttBeauty(Crawler):
         articles = []
         for page in index_seqs:
             try:
-                res = self.rs.get(page, verify=False, headers=Crawler.over_18)
+                res = Crawler.rs.get(page, verify=False, headers=Crawler.over_18)
                 res.raise_for_status()
             except requests.exceptions.ConnectionError:
                 logging.error('Connection error')
@@ -138,10 +139,14 @@ class PttBeauty(Crawler):
                 articles += Ptt.crawler_info(res)
             time.sleep(0.05)
 
-        return ''.join('[{} push] {}\n{}\n\n'.format(article.rate,
-                                                     article.title,
-                                                     article.url)
-                       for article in articles)
+        result = ''
+        for index, article in enumerate(reversed(articles)):
+            if index == 15:
+                break
+            result += '[{} push] {}\n{}\n\n'.format(
+                article.rate, article.title, article.url)
+
+        return result
 
 
 class Gossiping(Crawler):
@@ -159,7 +164,7 @@ class Gossiping(Crawler):
         articles = []
         for page in index_seqs:
             try:
-                res = self.rs.get(page, verify=False, headers=Crawler.over_18)
+                res = Crawler.rs.get(page, verify=False, headers=Crawler.over_18)
                 res.raise_for_status()
             except requests.exceptions.ConnectionError:
                 logging.error('Connection error')
@@ -167,10 +172,14 @@ class Gossiping(Crawler):
                 articles += Ptt.crawler_info(res)
             time.sleep(0.05)
 
-        return ''.join('[{} push] {}\n{}\n\n'.format(article.rate,
-                                                     article.title,
-                                                     article.url)
-                       for article in articles)
+        result = ''
+        for index, article in enumerate(reversed(articles)):
+            if index == 15:
+                break
+            result += '[{} push] {}\n{}\n\n'.format(
+                article.rate, article.title, article.url)
+
+        return result
 
 
 class PttSoftJob(Crawler):
@@ -196,10 +205,14 @@ class PttSoftJob(Crawler):
             else:
                 articles += Ptt.crawler_info(res)
             time.sleep(0.05)
-        return ''.join('[{} push] {}\n{}\n\n'.format(article.rate,
-                                                     article.title,
-                                                     article.url)
-                       for article in articles)
+        result = ''
+        for index, article in enumerate(reversed(articles)):
+            if index == 15:
+                break
+            result += '[{} push] {}\n{}\n\n'.format(
+                article.rate, article.title, article.url)
+
+        return result
 
 
 class PttTechJob(Crawler):
@@ -221,17 +234,19 @@ class PttTechJob(Crawler):
                 res = Crawler.rs.get(page, verify=False,
                                      headers=Crawler.headers)
                 res.raise_for_status()
-            except requests.exceptions.HTTPError as exc:
-                logging.warning(HTTP_ERROR_MSG.format(res=exc.response))
             except requests.exceptions.ConnectionError:
                 logging.error('Connection error')
             else:
                 articles += Ptt.crawler_info(res)
             time.sleep(0.05)
-        return ''.join('[{} push] {}\n{}\n\n'.format(article.rate,
-                                                     article.title,
-                                                     article.url)
-                       for article in articles)
+        result = ''
+        for index, article in enumerate(reversed(articles)):
+            if index == 15:
+                break
+            result += '[{} push] {}\n{}\n\n'.format(
+                article.rate, article.title, article.url)
+
+        return result
 
 
 class Movie(Crawler):
@@ -267,7 +282,6 @@ class Netflix(Crawler):
             for data in self.soup.select(sections):
                 genre = data.find('h2', class_='nm-collections-row-name').text
                 if genre == '最新發行':
-                    # print(detail.prettify())
                     print(genre)
                     # movies = data.find('div', class_='nm-content-horizontal-row')
                     for m in data.find_all('li', class_='nm-content-horizontal-row-item'):
@@ -285,7 +299,6 @@ class Netflix(Crawler):
                                         'name': a_movie_title,
                                         'url': a_url
                                     })
-                                    # print(a_movie_title)
                                     content += f'{a_movie_title}\n{a_url}\n'
                                 if len(movie_list) >= 10:
                                     break
@@ -381,29 +394,28 @@ class Rate(Crawler):
             for s in sight:
                 ret.append(s['data-table'])
                 ret.append(s.text.strip())
-            # print(ret)
-            c = '\t'.join(r for r in ret)
-            content += ''.join(f'{c}\n')
+            c = ' '.join(r for r in ret)
+            content += ''.join(f'{c}\n\n')
         return content
 
 
-class Beverage:
-    menu = dict(
-        coco='https://cdn.changing.ai/3685e330ec5277a9dd5661c61f2bc55811f5a628/1610091221313-a457d8-63-6d0-cdf3-a6602148f252',  # coco menu
-        嵐='https://icard.ai/_next/image?url=https://cdn.changing.ai/3685e330ec5277a9dd5661c61f2bc55811f5a628/1603163827149-c8d51a7-bbdd-bb33-f4b7-64225037cb7a&w=1200&q=75',  # 50
+class Beverage():
+    menu = {
+        'coco菜單': 'https://cdn.changing.ai/3685e330ec5277a9dd5661c61f2bc55811f5a628/1610091221313-a457d8-63-6d0-cdf3-a6602148f252',  # coco menu
+        '50嵐菜單': 'https://icard.ai/_next/image?url=https://cdn.changing.ai/3685e330ec5277a9dd5661c61f2bc55811f5a628/1603163827149-c8d51a7-bbdd-bb33-f4b7-64225037cb7a&w=1200&q=75',  # 50
 
 
-        白巷子='https://cdn.walkerland.com.tw/images/upload/poi/p100452/m61096/3a710164218c896c4f85341d7bd945e1e4a452ea.jpg',  # 白巷子
-        迷客夏='https://www.milkshoptea.com/upload/price/2104090829390000002.jpg',  # 迷客夏
+        '白巷子菜單': 'https://cdn.walkerland.com.tw/images/upload/poi/p100452/m61096/3a710164218c896c4f85341d7bd945e1e4a452ea.jpg',  # 白巷子
+        '迷客夏菜單': 'https://www.milkshoptea.com/upload/price/2104090829390000002.jpg',  # 迷客夏
 
         # COMEBUY
-        COMEBUY='http://www.comebuy2002.com.tw/upload/%E5%A4%A7%E9%BA%A52020DM(%E4%B8%80%E8%88%AC)-21x14_85cm-02.jpg',
-        清心='https://www.chingshin.tw/upload/price/1907171531260000001.jpg',  # 清心
+        'COMEBUY菜單': 'http://www.comebuy2002.com.tw/upload/%E5%A4%A7%E9%BA%A52020DM(%E4%B8%80%E8%88%AC)-21x14_85cm-02.jpg',
+        '清心菜單': 'https://www.chingshin.tw/upload/price/1907171531260000001.jpg',  # 清心
 
-        麻古='https://twcoupon.com/images/menu/p_maculife_n.jpg',  # 麻古
-        鮮茶道='https://twcoupon.com/images/menu/p_presotea.jpg',  # 鮮茶道
-        大苑子='https://twcoupon.com/images/menu/p_dayungstea_n.jpg',  # 大苑子
-    )
+        '麻古菜單': 'https://twcoupon.com/images/menu/p_maculife_n.jpg',  # 麻古
+        '鮮茶道菜單': 'https://twcoupon.com/images/menu/p_presotea.jpg',  # 鮮茶道
+        '大苑子菜單': 'https://twcoupon.com/images/menu/p_dayungstea_n.jpg',  # 大苑子
+    }
 
-    def parser(self):
-        return k, Beverage.menu.get(v, '查無此品牌')
+    def parser(self, b):
+        return self.menu.get(b, '暫無菜單')
