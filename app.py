@@ -1,11 +1,10 @@
 '''
 Author: yuan
 Date: 2021-04-14 03:24:03
-LastEditTime: 2021-04-18 08:23:20
+LastEditTime: 2021-04-18 08:39:27
 FilePath: /line-chatbot/app.py
 '''
 from flask import Flask, abort, render_template, request
-from flask_bootstrap import Bootstrap
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import (MessageEvent, TextMessage)
 
@@ -22,7 +21,6 @@ from interface import (gossiping, movie, netflix,  # init_task()
 from my_dict import MyDict
 
 app = Flask(__name__)
-bootstrap = Bootstrap(app)
 config = Config()
 handler = config.handler
 
