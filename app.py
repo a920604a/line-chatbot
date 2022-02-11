@@ -70,9 +70,9 @@ class Bot:
         factory = None
         print(f"self.val:{self.val}")
         print(f"task_map:{Bot.task_map}")
-        if self.val in Bot.task_map.values():
+        if self.val in Bot.task_map:
             factory = Factory
-        elif self.val in Bot.task_map.values():
+        elif self.val in Bot.task_map:
             # action_fun = Bot.task_map.get(self.val)
             factory = Template_Factory
         return factory, action_fun
