@@ -66,7 +66,7 @@ class Bot:
         self.val = val
 
     def get_fun(self):
-        action_fun = Bot.task_map.get(self.val)
+        action_fun = eval(Bot.task_map.get(self.val))
         factory = None
         print(f"self.val:{self.val}")
         print(f"task_map:{Bot.task_map}")
