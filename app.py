@@ -60,7 +60,7 @@ class Bot:
     #     MyDict.beverage_template2: beverage_template2
 
     # }
-    task_map = MyDict
+    task_map = {v: k for k, v in MyDict.items()} 
 
     def __init__(self, val):
         self.val = val
