@@ -77,54 +77,68 @@ class Template_Factory:
 #     self.reply_message(buttons_template)
 
 
+def reply_text_message(cls, ins):
+    task = cls()
+    ins.reply_message(TextSendMessage(text = task.parser()))
+    
+
 def tvbs_news(self):
-    task = News()
-    self.reply_message(TextSendMessage(text=task.parser()))
+    reply_text_message(News, self)
+    # task = News()
+    # self.reply_message(TextSendMessage(text=task.parser()))
 
 
 def ptt_beauty(self):
-    task = PttBeauty()  # over 18
-    self.reply_message(TextSendMessage(text=task.parser()))
+    reply_text_message(PttBeauty, self)
+    # task = PttBeauty()  # over 18
+    # self.reply_message(TextSendMessage(text=task.parser()))
 
 
 def gossiping(self):
-    task = Gossiping()  # over 18
-    self.reply_message(TextSendMessage(text=task.parser()))
+    reply_text_message(Gossiping, self)
+    # task = Gossiping()  # over 18
+    # self.reply_message(TextSendMessage(text=task.parser()))
 
 
 def ptt_soft_job(self):
-    task = PttSoftJob()
-    self.reply_message(TextSendMessage(text=task.parser()))
+    reply_text_message = (PttSoftJob, self)
+    # task = PttSoftJob()
+    # self.reply_message(TextSendMessage(text=task.parser()))
 
 
 def ptt_tech_job(self):
-    task = PttTechJob()
-    self.reply_message(TextSendMessage(text=task.parser()))
+    reply_text_message(PttTechJob, self)
+    # task = PttTechJob()
+    # self.reply_message(TextSendMessage(text=task.parser()))
 
 
 def movie(self):
-    task = Movie()
-    self.reply_message(TextSendMessage(task.parser()))
+    reply_text_message(Movie, self)
+    # task = Movie()
+    # self.reply_message(TextSendMessage(task.parser()))
 
 
-def netflix(self):  # optimize
-    task = Netflix()
-    self.reply_message(TextSendMessage(task.parser()))
+# def netflix(self):  # optimize
+#     task = Netflix()
+#     self.reply_message(TextSendMessage(task.parser()))
 
 
 def tech_news(self):
-    task = Technews()
-    self.reply_message(TextSendMessage(task.parser()))
+    reply_text_message(Technews, self)
+    # task = Technews()
+    # self.reply_message(TextSendMessage(task.parser()))
 
 
 def oil_price(self):
-    task = OilPrice()
-    self.reply_message(TextSendMessage(task.parser()))
+    reply_text_message(OilPrice, self)
+    # task = OilPrice()
+    # self.reply_message(TextSendMessage(task.parser()))
 
 
 def rate(self):  # not finish
-    task = Rate()
-    self.reply_message(TextSendMessage(task.parser()))
+    reply_text_message(Rate, self)
+    # task = Rate()
+    # self.reply_message(TextSendMessage(task.parser()))
 
 
 # def beverage(self):  # reply menu image and beverage price
@@ -283,11 +297,11 @@ def movie_template(self):
                 MessageTemplateAction(
                     label=MyDict.movie,
                     text=MyDict.movie
-                ),
-                MessageTemplateAction(
-                    label=MyDict.netflix,
-                    text=MyDict.netflix
                 )
+                # MessageTemplateAction(
+                #     label=MyDict.netflix,
+                #     text=MyDict.netflix
+                # )
             ]
         )
     )
