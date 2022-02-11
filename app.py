@@ -67,6 +67,7 @@ class Bot:
 
     def get_fun(self):
         action_fun = Bot.task_map.get(self.val)
+        factory = None
         if self.val in Bot.task_map:
             factory = Factory
         elif self.val in Bot.task_map:
