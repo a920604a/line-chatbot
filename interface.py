@@ -46,37 +46,6 @@ class Template_Factory:
     def reply_message(self, obj):
         line_bot_api.reply_message(self.event.reply_token, obj)
 
-
-# def start_template(self):
-#     buttons_template = TemplateSendMessage(
-#         alt_text='開始玩 template',
-#         template=ButtonsTemplate(
-#             title='選擇服務',
-#             text='請選擇',
-#             thumbnail_image_url='https://i.imgur.com/xQF5dZT.jpg',
-#             actions=[
-#                 MessageTemplateAction(
-#                     label=MyDict.news_template,
-#                     text=MyDict.news_template
-#                 ),
-#                 MessageTemplateAction(
-#                     label=MyDict.movie_template,
-#                     text=MyDict.movie_template
-#                 ),
-#                 MessageTemplateAction(
-#                     label=MyDict.ptt_template,
-#                     text=MyDict.ptt_template
-#                 ),
-#                 MessageTemplateAction(
-#                     label=MyDict.beauty_template,
-#                     text=MyDict.beauty_template
-#                 )
-#             ]
-#         )
-#     )
-#     self.reply_message(buttons_template)
-
-
 def reply_text_message(cls, ins):
     task = cls()
     ins.reply_message(TextSendMessage(text = task.parser()))
@@ -84,40 +53,27 @@ def reply_text_message(cls, ins):
 
 def tvbs_news(self):
     reply_text_message(News, self)
-    # task = News()
-    # self.reply_message(TextSendMessage(text=task.parser()))
 
 
 def ptt_beauty(self):
     reply_text_message(PttBeauty, self)
-    # task = PttBeauty()  # over 18
-    # self.reply_message(TextSendMessage(text=task.parser()))
-
+  
 
 def gossiping(self):
     reply_text_message(Gossiping, self)
-    # task = Gossiping()  # over 18
-    # self.reply_message(TextSendMessage(text=task.parser()))
 
 
 def ptt_soft_job(self):
     reply_text_message = (PttSoftJob, self)
-    # task = PttSoftJob()
-    # self.reply_message(TextSendMessage(text=task.parser()))
-
+  
 
 def ptt_tech_job(self):
     reply_text_message(PttTechJob, self)
-    # task = PttTechJob()
-    # self.reply_message(TextSendMessage(text=task.parser()))
-
+   
 
 def movie(self):
     reply_text_message(Movie, self)
-    # task = Movie()
-    # self.reply_message(TextSendMessage(task.parser()))
-
-
+ 
 # def netflix(self):  # optimize
 #     task = Netflix()
 #     self.reply_message(TextSendMessage(task.parser()))
@@ -125,27 +81,15 @@ def movie(self):
 
 def tech_news(self):
     reply_text_message(Technews, self)
-    # task = Technews()
-    # self.reply_message(TextSendMessage(task.parser()))
-
+   
 
 def oil_price(self):
     reply_text_message(OilPrice, self)
-    # task = OilPrice()
-    # self.reply_message(TextSendMessage(task.parser()))
-
+ 
 
 def rate(self):  # not finish
     reply_text_message(Rate, self)
-    # task = Rate()
-    # self.reply_message(TextSendMessage(task.parser()))
-
-
-# def beverage(self):  # reply menu image and beverage price
-#     task = Beverage()
-#     url = task.parser(self.event.message.text)
-#     self.reply_message(ImageSendMessage(
-#         original_content_url=url, preview_image_url=_url))
+   
 
 
 def beverage_50lan(self):
