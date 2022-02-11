@@ -108,7 +108,7 @@ def callback():
 @ handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     print(f'event: {event}')
-    config.reply_message(
+    config.line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=event.message.text))
     # message = event.message.text
