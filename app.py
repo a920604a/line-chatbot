@@ -69,7 +69,7 @@ class Bot:
         action_fun = Bot.task_map.get(self.val)
         factory = None
         print(f"self.val:{self.val}")
-        printf(f"task_map:{Bot.stask_map}")
+        printf(f"task_map:{Bot.task_map}")
         if self.val in Bot.task_map.values():
             factory = Factory
         elif self.val in Bot.task_map.values():
