@@ -108,15 +108,18 @@ def callback():
 @ handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     print(f'event: {event}')
-    message = event.message.text
-    print(message)
-    bot = Bot(message)
-    # factory is class name , action_func is method name
-    factory_class, action_func = bot.get_fun()
-    print(action_func.__name__)
-    print(factory_class)
-    task = factory_class(action_func, event)  # object
-    action_func(task)
+    config.line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=event.message.text))
+    # message = event.message.text
+    # print(message)
+    # bot = Bot(message)
+    # # factory is class name , action_func is method name
+    # factory_class, action_func = bot.get_fun()
+    # print(action_func.__name__)
+    # print(factory_class)
+    # task = factory_class(action_func, event)  # object
+    # action_func(task)
 
 
 if __name__ == "__main__":
