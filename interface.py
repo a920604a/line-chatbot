@@ -148,7 +148,7 @@ def beverage_dayungs(self):
         original_content_url=url, preview_image_url=url))
 
 
-def start_template(self):
+def start_word(self):
     buttons_template = TemplateSendMessage(
         alt_text='開始玩 template',
         template=ButtonsTemplate(

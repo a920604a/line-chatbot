@@ -16,7 +16,7 @@ from interface import (gossiping, movie,
                        beverage_coco, beverage_whitealley, beverage_milkshop,
                        beverage_chingshin, beverage_maculife,
                        beverage_presotea, beverage_dayungs,
-                       start_template, ptt_template, news_template, movie_template,
+                       start_word, ptt_template, news_template, movie_template,
                        beverage_template, beverage_template1, beverage_template2,
                        Factory, Template_Factory)
 from my_dict import MyDict
