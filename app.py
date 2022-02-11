@@ -9,7 +9,8 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import (MessageEvent, TextMessage, TextSendMessage)
 
 from config import Config
-from interface import (gossiping, movie, netflix,  # init_task()
+from interface import (gossiping, movie, 
+                        #   netlix,  # init_task()
                        tvbs_news, oil_price, ptt_beauty, ptt_soft_job, ptt_tech_job, rate, tech_news,
                        beverage_50lan,
                        beverage_coco, beverage_whitealley, beverage_milkshop,
