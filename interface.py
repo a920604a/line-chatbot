@@ -47,34 +47,34 @@ class Template_Factory:
         line_bot_api.reply_message(self.event.reply_token, obj)
 
 
-def start_template(self):
-    buttons_template = TemplateSendMessage(
-        alt_text='開始玩 template',
-        template=ButtonsTemplate(
-            title='選擇服務',
-            text='請選擇',
-            thumbnail_image_url='https://i.imgur.com/xQF5dZT.jpg',
-            actions=[
-                MessageTemplateAction(
-                    label=MyDict.news_template,
-                    text=MyDict.news_template
-                ),
-                MessageTemplateAction(
-                    label=MyDict.movie_template,
-                    text=MyDict.movie_template
-                ),
-                MessageTemplateAction(
-                    label=MyDict.ptt_template,
-                    text=MyDict.ptt_template
-                ),
-                MessageTemplateAction(
-                    label=MyDict.beauty_template,
-                    text=MyDict.beauty_template
-                )
-            ]
-        )
-    )
-    self.reply_message(buttons_template)
+# def start_template(self):
+#     buttons_template = TemplateSendMessage(
+#         alt_text='開始玩 template',
+#         template=ButtonsTemplate(
+#             title='選擇服務',
+#             text='請選擇',
+#             thumbnail_image_url='https://i.imgur.com/xQF5dZT.jpg',
+#             actions=[
+#                 MessageTemplateAction(
+#                     label=MyDict.news_template,
+#                     text=MyDict.news_template
+#                 ),
+#                 MessageTemplateAction(
+#                     label=MyDict.movie_template,
+#                     text=MyDict.movie_template
+#                 ),
+#                 MessageTemplateAction(
+#                     label=MyDict.ptt_template,
+#                     text=MyDict.ptt_template
+#                 ),
+#                 MessageTemplateAction(
+#                     label=MyDict.beauty_template,
+#                     text=MyDict.beauty_template
+#                 )
+#             ]
+#         )
+#     )
+#     self.reply_message(buttons_template)
 
 
 def tvbs_news(self):
