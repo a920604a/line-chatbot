@@ -6,7 +6,7 @@ FilePath: /line-chatbot/app.py
 '''
 from flask import Flask, abort, render_template, request
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import (MessageEvent, TextMessage)
+from linebot.models import (MessageEvent, TextMessage, TextSendMessage)
 
 from config import Config
 from interface import (gossiping, movie, netflix,  # init_task()
