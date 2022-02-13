@@ -22,8 +22,6 @@ from config import Config
 from serve import (Beverage, Gossiping, Movie, Netflix, News, OilPrice,
                    PttBeauty, PttSoftJob, PttTechJob, Rate, Technews)
 
-# from serve import
-
 
 config = Config()
 line_bot_api = config.line_bot_api
@@ -148,7 +146,7 @@ def beverage_dayungs(self):
         original_content_url=url, preview_image_url=url))
 
 
-def start_word(self):
+def start_template(self):
     buttons_template = TemplateSendMessage(
         alt_text='開始玩 template',
         template=ButtonsTemplate(

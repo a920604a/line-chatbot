@@ -12,7 +12,6 @@ import time
 import logging
 from collections import namedtuple
 
-ArticleInfo = namedtuple('ArticleInfo', ['title', 'url', 'rate'])
 
 
 class Crawler(metaclass=ABCMeta):
@@ -49,6 +48,7 @@ class Crawler(metaclass=ABCMeta):
 
 
 class Ptt():
+    ArticleInfo = namedtuple('ArticleInfo', ['title', 'url', 'rate'])
 
     @staticmethod
     def crawler_info(res):
@@ -69,7 +69,7 @@ class Ptt():
                             int(rate[1]) if rate.startswith('X') else rate
                     else:
                         rate = 0
-                    articles.append(ArticleInfo(title, url, rate))
+                    articles.append(Ptt.ArticleInfo(title, url, rate))
             except Exception as e:
                 print('本文已被刪除', e)
         return articles
