@@ -80,7 +80,7 @@ class Ptt(Crawler):
     def get_all_index(soup, url, parser_page):
         last_page = soup.select('.btn.wide')[1]['href']  # 上一頁
 
-        print(last_page)
+        print(f"last_page:{last_page}\n")
         max_page = Ptt.get_max_Page(last_page)
         return (
             url.format(page)
@@ -102,6 +102,7 @@ class Ptt(Crawler):
             self.soup, self.url, self.parser_page)  # iterator
         articles = []
         for page in index_seqs:
+            print(f"page:\t{page}")
             try:
                 res = Crawler.rs.get(page, verify=False,
                                      headers=Crawler.headers)
