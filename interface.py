@@ -57,6 +57,7 @@ class Strategy:
 
 
 def reply_text_message(cls, ins):
+    print(f"cls name : {cls}\n")
     task = cls()
     ins.reply_message(TextSendMessage(text = task.parser()))
     
