@@ -72,7 +72,7 @@ class Bot:
             action_fun = self.task_map.get(self.val)
         elif self.val in Bot.template_map:
             action_fun = self.template_map.get(self.val)
-        return Strategy, self.task_map.get(self.val)
+        return Strategy, action_fun
 
     def lower(self):
         self.val = self.val.lower()
