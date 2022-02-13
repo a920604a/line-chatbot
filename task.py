@@ -184,7 +184,7 @@ class PttGossiping(Crawler):
     # def parser(self):
         
     #     index_seqs = Ptt.get_all_index(
-    #         self.soup, url, Gossiping.parser_page)
+    #         self.soup, url, PttGossiping.parser_page)
     #     articles = []
     #     for page in index_seqs:
     #         try:

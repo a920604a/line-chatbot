@@ -67,13 +67,11 @@ class Bot:
         self.val = val
 
     def get_fun(self):
-        # if self.val in Bot.task_map:
-        #     action_fun = self.task_map.get(self.val)
-        #     factory = Factory
-        # elif self.val in Bot.template_map:
-        #     action_fun = self.template_map.get(self.val)
-        #     factory = Template_Factory
-        # return factory, action_fun
+        action_fun = None
+        if self.val in Bot.task_map:
+            action_fun = self.task_map.get(self.val)
+        elif self.val in Bot.template_map:
+            action_fun = self.template_map.get(self.val)
         return Strategy, self.task_map.get(self.val)
 
     def lower(self):
