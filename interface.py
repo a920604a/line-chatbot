@@ -77,7 +77,7 @@ def ptt_gossiping(self):
 
 
 def ptt_soft_job(self):
-    reply_text_message = (PttSoftJob, self)
+    reply_text_message(PttSoftJob, self)
   
 
 def ptt_tech_job(self):

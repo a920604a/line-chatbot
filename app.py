@@ -115,8 +115,8 @@ def handle_message(event):
     bot = Bot(message)
     # factory is class name , action_func is method name
     factory_class, action_func = bot.get_fun()
-    print(action_func.__name__)
-    print(factory_class)
+    print(f"action_func.__name__: {action_func.__name__}\n")
+    print(f"factory_class: {factory_class}\n")
     task = factory_class(action_func, event)  # object
     action_func(task)
 
