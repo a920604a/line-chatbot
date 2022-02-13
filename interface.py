@@ -19,7 +19,7 @@ from linebot.models import (
 from my_dict import MyDict
 
 from config import Config
-from serve import (Beverage, Gossiping, Movie, Netflix, News, OilPrice,
+from task import (Beverage, PttGossiping, Movie, Netflix, News, OilPrice,
                    PttBeauty, PttSoftJob, PttTechJob, Rate, Technews)
 
 
@@ -27,7 +27,25 @@ config = Config()
 line_bot_api = config.line_bot_api
 
 
-class Factory:
+# class Factory:
+#     def __init__(self, func=None, event=None):
+#         self.name = func.__name__
+#         self.event = event
+
+#     def reply_message(self, obj):
+#         line_bot_api.reply_message(self.event.reply_token, obj)
+
+
+# class Template_Factory:
+    # def __init__(self, func=None, event=None):
+    #     self.name = func.__name__
+    #     self.event = event
+
+    # def reply_message(self, obj):
+    #     line_bot_api.reply_message(self.event.reply_token, obj)
+
+
+class Strategy:
     def __init__(self, func=None, event=None):
         self.name = func.__name__
         self.event = event
@@ -36,13 +54,7 @@ class Factory:
         line_bot_api.reply_message(self.event.reply_token, obj)
 
 
-class Template_Factory:
-    def __init__(self, func=None, event=None):
-        self.name = func.__name__
-        self.event = event
 
-    def reply_message(self, obj):
-        line_bot_api.reply_message(self.event.reply_token, obj)
 
 def reply_text_message(cls, ins):
     task = cls()
@@ -57,8 +69,8 @@ def ptt_beauty(self):
     reply_text_message(PttBeauty, self)
   
 
-def gossiping(self):
-    reply_text_message(Gossiping, self)
+def ptt_gossiping(self):
+    reply_text_message(PttGossiping, self)
 
 
 def ptt_soft_job(self):
@@ -189,8 +201,8 @@ def ptt_template(self):
                     text=MyDict.ptt_beauty
                 ),
                 MessageTemplateAction(
-                    label=MyDict.gossiping,
-                    text=MyDict.gossiping
+                    label=MyDict.ptt_gossiping,
+                    text=MyDict.ptt_gossiping
                 ),
                 MessageTemplateAction(
                     label=MyDict.ptt_soft_job,

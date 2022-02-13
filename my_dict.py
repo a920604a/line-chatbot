@@ -11,7 +11,7 @@ class MyDict:
     ptt_beauty = 'PTT表特版'
     ptt_soft_job = '軟體'
     ptt_tech_job = '工作'
-    gossiping = '即時廢文'
+    ptt_gossiping = '即時廢文'
 
     movie = '近期上映電影'
     netflix = 'Netflix近期上映'

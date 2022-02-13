@@ -18,7 +18,9 @@ from interface import (gossiping, movie,
                        beverage_presotea, beverage_dayungs,
                        start_template, ptt_template, news_template, movie_template,
                        beverage_template, beverage_template1, beverage_template2,
-                       Factory, Template_Factory)
+                    #    Factory, Template_Factory
+                        Strategy
+                       )
 from my_dict import MyDict
 
 app = Flask(__name__)
@@ -32,7 +34,7 @@ class Bot:
         MyDict.ptt_beauty: ptt_beauty,
         MyDict.ptt_soft_job: ptt_soft_job,
         MyDict.ptt_tech_job: ptt_tech_job,
-        MyDict.gossiping: gossiping,
+        MyDict.ptt_gossiping: ptt_gossiping,
         MyDict.movie: movie,
         # MyDict.netflix: netflix,
         MyDict.tech_news: tech_news,
@@ -65,13 +67,14 @@ class Bot:
         self.val = val
 
     def get_fun(self):
-        if self.val in Bot.task_map:
-            action_fun = self.task_map.get(self.val)
-            factory = Factory
-        elif self.val in Bot.template_map:
-            action_fun = self.template_map.get(self.val)
-            factory = Template_Factory
-        return factory, action_fun
+        # if self.val in Bot.task_map:
+        #     action_fun = self.task_map.get(self.val)
+        #     factory = Factory
+        # elif self.val in Bot.template_map:
+        #     action_fun = self.template_map.get(self.val)
+        #     factory = Template_Factory
+        # return factory, action_fun
+        return Strategy, self.task_map.get(self.val)
 
     def lower(self):
         self.val = self.val.lower()
