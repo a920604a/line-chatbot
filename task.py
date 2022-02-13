@@ -47,7 +47,7 @@ class Crawler(metaclass=ABCMeta):
         pass
 
 
-class PttFactory(Crawler):
+class Ptt(Crawler):
     ArticleInfo = namedtuple('ArticleInfo', ['title', 'url', 'rate'])
 
     parser_page = 2
