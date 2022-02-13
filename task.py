@@ -223,6 +223,7 @@ class PttSoftJob(Crawler):
             self.soup, PttSoftJob.url, PttSoftJob.parser_page)  # iterator
         articles = []
         for page in index_seqs:
+            print(f"page:\t{page}\n")
             try:
                 res = Crawler.rs.get(page, verify=False,
                                      headers=Crawler.headers)
