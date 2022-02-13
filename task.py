@@ -242,7 +242,7 @@ class PttSoftJob(Crawler):
         return result
 
 
-class PttTechJob(Ptt):
+class PttTechJob(Crawler):
     parser_page = 3  # crawler count
     push_rate = 10  # 推文
     item_number = 15
