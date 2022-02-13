@@ -5,7 +5,7 @@ LastEditTime: 2021-04-18 01:21:40
 FilePath: /line-chatbot/my_dict.py
 '''
 
-# class MyDict:
+class MyDict:
     
 
     # ptt_beauty = 'PTT表特版'
