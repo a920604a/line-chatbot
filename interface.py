@@ -60,7 +60,9 @@ def reply_text_message(cls, ins):
     # print(f"cls name : {cls}\n")
     task = cls()
     print(f"task:\t{task}\n")
-    ins.reply_message(TextSendMessage(text = task.parser()))
+    text = task.parser()
+    print(f"text:\t{text}\n")
+    ins.reply_message(TextSendMessage(text = text))
     
 
 def tvbs_news(self):
