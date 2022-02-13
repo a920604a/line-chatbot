@@ -14,7 +14,7 @@ class MyDict:
     ptt_gossiping = '即時廢文'
 
     movie = '近期上映電影'
-    netflix = 'Netflix近期上映'
+    # netflix = 'Netflix近期上映'
 
     tech_news = '科技快報'
     tvbs_news = '即時新聞'

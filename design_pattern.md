@@ -36,4 +36,3 @@ class Config(metaclass=Singleton):
 
 
 ## 繼承
-## Factory pattern
