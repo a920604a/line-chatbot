@@ -142,8 +142,9 @@ class News(Crawler):
 
 
 class PttBeauty(Crawler):
-    # parser_page = 2  # crawler count
-    # push_rate = 10  # 推文
+    parser_page = 2  # crawler count
+    push_rate = 10  # 推文
+    item_number = 15
     target_url = 'https://www.ptt.cc/bbs/Beauty/index.html'
     url = 'https://www.ptt.cc/bbs/Beauty/index{}.html'
 
@@ -152,7 +153,7 @@ class PttBeauty(Crawler):
 
     def parser(self):
         index_seqs = Ptt.get_all_index(
-            self.soup, url, PttBeauty.parser_page)
+            self.soup, PttBeauty.url, PttBeauty.parser_page)
         articles = []
         for page in index_seqs:
             try:
@@ -166,7 +167,7 @@ class PttBeauty(Crawler):
 
         result = ''
         for index, article in enumerate(reversed(articles)):
-            if index == 15:
+            if index == PttBeauty.item_number:
                 break
             result += f"[{article.rate} push] {article.title}\n{article.url}\n\n"
 
@@ -174,8 +175,10 @@ class PttBeauty(Crawler):
 
 
 class PttGossiping(Crawler):
-    target_url = 'https://www.ptt.cc/bbs/Gossiping/index.html'
     parser_page = 5  # crawler count
+    push_rate = 10  # 推文
+    item_number = 15
+    target_url = 'https://www.ptt.cc/bbs/Gossiping/index.html'
     url = 'https://www.ptt.cc/bbs/Gossiping/index{}.html'
 
     def __init__(self):
@@ -184,7 +187,7 @@ class PttGossiping(Crawler):
     def parser(self):
         
         index_seqs = Ptt.get_all_index(
-            self.soup, url, PttGossiping.parser_page)
+            self.soup, PttGossiping.url, PttGossiping.parser_page)
         articles = []
         for page in index_seqs:
             try:
@@ -198,7 +201,7 @@ class PttGossiping(Crawler):
 
         result = ''
         for index, article in enumerate(reversed(articles)):
-            if index == 15:
+            if index == PttGossiping.item_number:
                 break
             result += f"[{article.rate} push] {article.title}\n{article.url}\n\n"
 
@@ -206,8 +209,10 @@ class PttGossiping(Crawler):
 
 
 class PttSoftJob(Crawler):
-    target_url = 'https://www.ptt.cc/bbs/Soft_Job/index.html'
     parser_page = 3  # crawler count
+    push_rate = 10  # 推文
+    item_number = 15
+    target_url = 'https://www.ptt.cc/bbs/Soft_Job/index.html'
     url = 'https://www.ptt.cc/bbs/Soft_Job/index{}.html'
         
     def __init__(self):
@@ -215,7 +220,7 @@ class PttSoftJob(Crawler):
 
     def parser(self):
         index_seqs = Ptt.get_all_index(
-            self.soup, url, PttTechJob.parser_page)  # iterator
+            self.soup, PttSoftJob.url, PttTechJob.parser_page)  # iterator
         articles = []
         for page in index_seqs:
             print(page)
@@ -230,17 +235,18 @@ class PttSoftJob(Crawler):
             time.sleep(0.05)
         result = ''
         for index, article in enumerate(reversed(articles)):
-            if index == 15:
+            if index == PttSoftJob.item_number:
                 break
-            result += '[{} push] {}\n{}\n\n'.format(
-                article.rate, article.title, article.url)
+            result += f"[{article.rate} push] {article.title}\n{article.url}\n\n"
 
         return result
 
 
 class PttTechJob(Ptt):
-    target_url = 'https://www.ptt.cc/bbs/Tech_Job/index.html'
     parser_page = 3  # crawler count
+    push_rate = 10  # 推文
+    item_number = 15
+    target_url = 'https://www.ptt.cc/bbs/Tech_Job/index.html'
     # push_rate = 10
     url = 'https://www.ptt.cc/bbs/Tech_Job/index{}.html'
         
@@ -250,7 +256,7 @@ class PttTechJob(Ptt):
     def parser(Crawler):
         
         index_seqs = Ptt.get_all_index(
-            self.soup, url, PttTechJob.parser_page)  # iterator
+            self.soup, PttTechJob.url, PttTechJob.parser_page)  # iterator
         articles = []
         for page in index_seqs:
             try:
@@ -264,11 +270,9 @@ class PttTechJob(Ptt):
             time.sleep(0.05)
         result = ''
         for index, article in enumerate(reversed(articles)):
-            if index == 15:
+            if index == PttTechJob.item_number:
                 break
-            result += '[{} push] {}\n{}\n\n'.format(
-                article.rate, article.title, article.url)
-
+            result += f"[{article.rate} push] {article.title}\n{article.url}\n\n"
         return result
 
 
