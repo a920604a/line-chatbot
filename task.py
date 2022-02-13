@@ -223,7 +223,6 @@ class PttSoftJob(Crawler):
             self.soup, PttSoftJob.url, PttSoftJob.parser_page)  # iterator
         articles = []
         for page in index_seqs:
-            print(page)
             try:
                 res = Crawler.rs.get(page, verify=False,
                                      headers=Crawler.headers)
@@ -247,13 +246,12 @@ class PttTechJob(Crawler):
     push_rate = 10  # 推文
     item_number = 15
     target_url = 'https://www.ptt.cc/bbs/Tech_Job/index.html'
-    # push_rate = 10
     url = 'https://www.ptt.cc/bbs/Tech_Job/index{}.html'
         
     def __init__(self):
         super().__init__(PttTechJob.target_url)
 
-    def parser(Crawler):
+    def parser(self):
         
         index_seqs = Ptt.get_all_index(
             self.soup, PttTechJob.url, PttTechJob.parser_page)  # iterator
