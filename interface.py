@@ -60,8 +60,6 @@ def reply_text_message(cls, ins):
     # print(f"cls name : {cls}\n")
     task = cls()
     print(f"task:\t{task}\n")
-    if task.parser_page: 
-        print(f"parser_page:\t{task.parser_page}\n)
     ins.reply_message(TextSendMessage(text = task.parser()))
     
 
