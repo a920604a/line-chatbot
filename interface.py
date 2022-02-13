@@ -61,7 +61,6 @@ def reply_text_message(cls, ins):
     task = cls()
     print(f"task:\t{task}\n")
     text = task.parser()
-    print(f"text:\t{text}\n")
     ins.reply_message(TextSendMessage(text = text))
     
 

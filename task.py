@@ -96,6 +96,7 @@ class Ptt(Crawler):
         return int(page_number) + 1
 
     def parser(self):
+        print(f"url:\t{self.url}, parser_page:\t:{self.parser_page}")
         # url = self.url
         index_seqs = Ptt.get_all_index(
             self.soup, self.url, self.parser_page)  # iterator
