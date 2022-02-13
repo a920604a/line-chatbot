@@ -132,4 +132,5 @@ git push heroku master
 ```
 ## TODO list
 
-- 飲料菜單
+- 優化 飲料菜單
+- 提供影片功能
