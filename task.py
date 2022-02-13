@@ -436,7 +436,7 @@ class Beverage():
 
         # COMEBUY
         'COMEBUY菜單': 'http://www.comebuy2002.com.tw/upload/%E5%A4%A7%E9%BA%A52020DM(%E4%B8%80%E8%88%AC)-21x14_85cm-02.jpg',
-        '清心菜單': 'https://twcoupon.com/bmenu-%E6%B8%85%E5%BF%83%E7%A6%8F%E5%85%A8-menu%E8%8F%9C%E5%96%AE%E5%83%B9%E6%A0%BC.html',  # 清心
+        '清心菜單': 'https://www.chingshin.tw/upload/price/1907171531260000001.jpg',  # 清心
 
         '麻古菜單': 'https://twcoupon.com/images/menu/p_maculife_n.jpg',  # 麻古
         '鮮茶道菜單': 'https://twcoupon.com/images/menu/p_presotea.jpg',  # 鮮茶道
