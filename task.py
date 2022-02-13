@@ -47,7 +47,7 @@ class Crawler(metaclass=ABCMeta):
         pass
 
 
-class PttFactory():
+class PttFactory(Crawler):
     ArticleInfo = namedtuple('ArticleInfo', ['title', 'url', 'rate'])
 
     parser_page = 2
@@ -139,7 +139,7 @@ class News(Crawler):
         return content
 
 
-class PttBeauty(Crawler):
+class PttBeauty(Ptt):
     # parser_page = 2  # crawler count
     # push_rate = 10  # 推文
     target_url = 'https://www.ptt.cc/bbs/Beauty/index.html'
@@ -148,8 +148,8 @@ class PttBeauty(Crawler):
     def __init__(self):
         super().__init__(PttBeauty.target_url, 'post')
 
-    def parser(self):
-        self.parser()
+    # def parser(self):
+        
         
 
     #     index_seqs = Ptt.get_all_index(
@@ -174,7 +174,7 @@ class PttBeauty(Crawler):
     #     return result
 
 
-class PttGossiping(Crawler):
+class PttGossiping(Ptt):
     target_url = 'https://www.ptt.cc/bbs/Gossiping/index.html'
     parser_page = 5  # crawler count
     url = 'https://www.ptt.cc/bbs/Gossiping/index{}.html'
@@ -182,8 +182,7 @@ class PttGossiping(Crawler):
     def __init__(self):
         super().__init__(PttGossiping.target_url, 'post')
 
-    def parser(self):
-        self.parser()
+    # def parser(self):
         
     #     index_seqs = Ptt.get_all_index(
     #         self.soup, url, PttGossiping.parser_page)
@@ -207,7 +206,7 @@ class PttGossiping(Crawler):
     #     return result
 
 
-class PttSoftJob(Crawler):
+class PttSoftJob(Ptt):
     target_url = 'https://www.ptt.cc/bbs/Soft_Job/index.html'
     parser_page = 3  # crawler count
     url = 'https://www.ptt.cc/bbs/Soft_Job/index{}.html'
@@ -215,8 +214,7 @@ class PttSoftJob(Crawler):
     def __init__(self):
         super().__init__(PttSoftJob.target_url)
 
-    def parser(self):
-        self.parser()
+    # def parser(self):
     #     index_seqs = Ptt.get_all_index(
     #         self.soup, url, PttTechJob.parser_page)  # iterator
     #     articles = []
@@ -241,7 +239,7 @@ class PttSoftJob(Crawler):
     #     return result
 
 
-class PttTechJob(Crawler):
+class PttTechJob(Ptt):
     target_url = 'https://www.ptt.cc/bbs/Tech_Job/index.html'
     parser_page = 3  # crawler count
     # push_rate = 10
@@ -250,8 +248,8 @@ class PttTechJob(Crawler):
     def __init__(self):
         super().__init__(PttTechJob.target_url)
 
-    def parser(self):
-        self.parser()
+    # def parser(self):
+        
     #     index_seqs = Ptt.get_all_index(
     #         self.soup, url, PttTechJob.parser_page)  # iterator
     #     articles = []
