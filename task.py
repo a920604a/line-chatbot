@@ -148,7 +148,8 @@ class PttBeauty(Crawler):
     def __init__(self):
         super().__init__(PttBeauty.target_url, 'post')
 
-    # def parser(self):
+    def parser(self):
+        self.parser()
         
 
     #     index_seqs = Ptt.get_all_index(
@@ -181,7 +182,8 @@ class PttGossiping(Crawler):
     def __init__(self):
         super().__init__(PttGossiping.target_url, 'post')
 
-    # def parser(self):
+    def parser(self):
+        self.parser()
         
     #     index_seqs = Ptt.get_all_index(
     #         self.soup, url, PttGossiping.parser_page)
@@ -213,7 +215,8 @@ class PttSoftJob(Crawler):
     def __init__(self):
         super().__init__(PttSoftJob.target_url)
 
-    # def parser(self):
+    def parser(self):
+        self.parser()
     #     index_seqs = Ptt.get_all_index(
     #         self.soup, url, PttTechJob.parser_page)  # iterator
     #     articles = []
@@ -247,7 +250,8 @@ class PttTechJob(Crawler):
     def __init__(self):
         super().__init__(PttTechJob.target_url)
 
-    # def parser(self):
+    def parser(self):
+        self.parser()
     #     index_seqs = Ptt.get_all_index(
     #         self.soup, url, PttTechJob.parser_page)  # iterator
     #     articles = []
