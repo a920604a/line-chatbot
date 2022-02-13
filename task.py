@@ -220,7 +220,7 @@ class PttSoftJob(Crawler):
 
     def parser(self):
         index_seqs = Ptt.get_all_index(
-            self.soup, PttSoftJob.url, PttTechJob.parser_page)  # iterator
+            self.soup, PttSoftJob.url, PttSoftJob.parser_page)  # iterator
         articles = []
         for page in index_seqs:
             print(page)
