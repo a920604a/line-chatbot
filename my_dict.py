@@ -8,16 +8,16 @@ FilePath: /line-chatbot/my_dict.py
 class MyDict:
     
 
-    # ptt_beauty = 'PTT表特版'
-    # ptt_soft_job = '軟體'
-    # ptt_tech_job = '工作'
-    # gossiping = '即時廢文'
+    ptt_beauty = 'PTT表特版'
+    ptt_soft_job = '軟體'
+    ptt_tech_job = '工作'
+    gossiping = '即時廢文'
 
-    # movie = '近期上映電影'
-    # netflix = 'Netflix近期上映'
+    movie = '近期上映電影'
+    netflix = 'Netflix近期上映'
 
-    # tech_news = '科技快報'
-    # tvbs_news = '即時新聞'
+    tech_news = '科技快報'
+    tvbs_news = '即時新聞'
 
 
     oil_price = '油價查詢'
