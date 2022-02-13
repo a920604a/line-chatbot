@@ -95,30 +95,30 @@ class Ptt(Crawler):
         print(f'page_number: {page_number}')
         return int(page_number) + 1
 
-    def parser(self):
-        print(f"url:\t{self.url}, parser_page:\t:{self.parser_page}")
-        # url = self.url
-        index_seqs = Ptt.get_all_index(
-            self.soup, self.url, self.parser_page)  # iterator
-        articles = []
-        for page in index_seqs:
-            print(f"page:\t{page}")
-            try:
-                res = Crawler.rs.get(page, verify=False,
-                                     headers=Crawler.headers)
-                res.raise_for_status()
-            except requests.exceptions.ConnectionError:
-                logging.error('Connection error')
-            else:
-                articles += Ptt.crawler_info(res)
-            time.sleep(0.05)
-        result = ''
-        for index, article in enumerate(reversed(articles)):
-            if index == Ptt.item_number:
-                break
-            result += f"[{article.rate} push] {article.title}\n{article.url}\n\n"
+    # def parser(self):
+    #     print(f"url:\t{self.url}, parser_page:\t:{self.parser_page}")
+    #     # url = self.url
+    #     index_seqs = Ptt.get_all_index(
+    #         self.soup, self.url, self.parser_page)  # iterator
+    #     articles = []
+    #     for page in index_seqs:
+    #         print(f"page:\t{page}")
+    #         try:
+    #             res = Crawler.rs.get(page, verify=False,
+    #                                  headers=Crawler.headers)
+    #             res.raise_for_status()
+    #         except requests.exceptions.ConnectionError:
+    #             logging.error('Connection error')
+    #         else:
+    #             articles += Ptt.crawler_info(res)
+    #         time.sleep(0.05)
+    #     result = ''
+    #     for index, article in enumerate(reversed(articles)):
+    #         if index == Ptt.item_number:
+    #             break
+    #         result += f"[{article.rate} push] {article.title}\n{article.url}\n\n"
 
-        return result
+    #     return result
 
 
 class News(Crawler):
@@ -141,7 +141,7 @@ class News(Crawler):
         return content
 
 
-class PttBeauty(Ptt):
+class PttBeauty(Crawler):
     # parser_page = 2  # crawler count
     # push_rate = 10  # 推文
     target_url = 'https://www.ptt.cc/bbs/Beauty/index.html'
@@ -150,33 +150,30 @@ class PttBeauty(Ptt):
     def __init__(self):
         super().__init__(PttBeauty.target_url, 'post')
 
-    # def parser(self):
-        
-        
+    def parser(self):
+        index_seqs = Ptt.get_all_index(
+            self.soup, url, PttBeauty.parser_page)
+        articles = []
+        for page in index_seqs:
+            try:
+                res = Crawler.rs.get(page, verify=False, headers=Crawler.over_18)
+                res.raise_for_status()
+            except requests.exceptions.ConnectionError:
+                logging.error('Connection error')
+            else:
+                articles += Ptt.crawler_info(res)
+            time.sleep(0.05)
 
-    #     index_seqs = Ptt.get_all_index(
-    #         self.soup, url, PttBeauty.parser_page)
-    #     articles = []
-    #     for page in index_seqs:
-    #         try:
-    #             res = Crawler.rs.get(page, verify=False, headers=Crawler.over_18)
-    #             res.raise_for_status()
-    #         except requests.exceptions.ConnectionError:
-    #             logging.error('Connection error')
-    #         else:
-    #             articles += Ptt.crawler_info(res)
-    #         time.sleep(0.05)
+        result = ''
+        for index, article in enumerate(reversed(articles)):
+            if index == 15:
+                break
+            result += f"[{article.rate} push] {article.title}\n{article.url}\n\n"
 
-    #     result = ''
-    #     for index, article in enumerate(reversed(articles)):
-    #         if index == 15:
-    #             break
-    #         result += f"[{article.rate} push] {article.title}\n{article.url}\n\n"
-
-    #     return result
+        return result
 
 
-class PttGossiping(Ptt):
+class PttGossiping(Crawler):
     target_url = 'https://www.ptt.cc/bbs/Gossiping/index.html'
     parser_page = 5  # crawler count
     url = 'https://www.ptt.cc/bbs/Gossiping/index{}.html'
@@ -184,31 +181,31 @@ class PttGossiping(Ptt):
     def __init__(self):
         super().__init__(PttGossiping.target_url, 'post')
 
-    # def parser(self):
+    def parser(self):
         
-    #     index_seqs = Ptt.get_all_index(
-    #         self.soup, url, PttGossiping.parser_page)
-    #     articles = []
-    #     for page in index_seqs:
-    #         try:
-    #             res = Crawler.rs.get(page, verify=False, headers=Crawler.over_18)
-    #             res.raise_for_status()
-    #         except requests.exceptions.ConnectionError:
-    #             logging.error('Connection error')
-    #         else:
-    #             articles += Ptt.crawler_info(res)
-    #         time.sleep(0.05)
+        index_seqs = Ptt.get_all_index(
+            self.soup, url, PttGossiping.parser_page)
+        articles = []
+        for page in index_seqs:
+            try:
+                res = Crawler.rs.get(page, verify=False, headers=Crawler.over_18)
+                res.raise_for_status()
+            except requests.exceptions.ConnectionError:
+                logging.error('Connection error')
+            else:
+                articles += Ptt.crawler_info(res)
+            time.sleep(0.05)
 
-    #     result = ''
-    #     for index, article in enumerate(reversed(articles)):
-    #         if index == 15:
-    #             break
-    #         result += f"[{article.rate} push] {article.title}\n{article.url}\n\n"
+        result = ''
+        for index, article in enumerate(reversed(articles)):
+            if index == 15:
+                break
+            result += f"[{article.rate} push] {article.title}\n{article.url}\n\n"
 
-    #     return result
+        return result
 
 
-class PttSoftJob(Ptt):
+class PttSoftJob(Crawler):
     target_url = 'https://www.ptt.cc/bbs/Soft_Job/index.html'
     parser_page = 3  # crawler count
     url = 'https://www.ptt.cc/bbs/Soft_Job/index{}.html'
@@ -216,29 +213,29 @@ class PttSoftJob(Ptt):
     def __init__(self):
         super().__init__(PttSoftJob.target_url)
 
-    # def parser(self):
-    #     index_seqs = Ptt.get_all_index(
-    #         self.soup, url, PttTechJob.parser_page)  # iterator
-    #     articles = []
-    #     for page in index_seqs:
-    #         print(page)
-    #         try:
-    #             res = Crawler.rs.get(page, verify=False,
-    #                                  headers=Crawler.headers)
-    #             res.raise_for_status()
-    #         except requests.exceptions.ConnectionError:
-    #             logging.error('Connection error')
-    #         else:
-    #             articles += Ptt.crawler_info(res)
-    #         time.sleep(0.05)
-    #     result = ''
-    #     for index, article in enumerate(reversed(articles)):
-    #         if index == 15:
-    #             break
-    #         result += '[{} push] {}\n{}\n\n'.format(
-    #             article.rate, article.title, article.url)
+    def parser(self):
+        index_seqs = Ptt.get_all_index(
+            self.soup, url, PttTechJob.parser_page)  # iterator
+        articles = []
+        for page in index_seqs:
+            print(page)
+            try:
+                res = Crawler.rs.get(page, verify=False,
+                                     headers=Crawler.headers)
+                res.raise_for_status()
+            except requests.exceptions.ConnectionError:
+                logging.error('Connection error')
+            else:
+                articles += Ptt.crawler_info(res)
+            time.sleep(0.05)
+        result = ''
+        for index, article in enumerate(reversed(articles)):
+            if index == 15:
+                break
+            result += '[{} push] {}\n{}\n\n'.format(
+                article.rate, article.title, article.url)
 
-    #     return result
+        return result
 
 
 class PttTechJob(Ptt):
@@ -250,29 +247,29 @@ class PttTechJob(Ptt):
     def __init__(self):
         super().__init__(PttTechJob.target_url)
 
-    # def parser(self):
+    def parser(Crawler):
         
-    #     index_seqs = Ptt.get_all_index(
-    #         self.soup, url, PttTechJob.parser_page)  # iterator
-    #     articles = []
-    #     for page in index_seqs:
-    #         try:
-    #             res = Crawler.rs.get(page, verify=False,
-    #                                  headers=Crawler.headers)
-    #             res.raise_for_status()
-    #         except requests.exceptions.ConnectionError:
-    #             logging.error('Connection error')
-    #         else:
-    #             articles += Ptt.crawler_info(res)
-    #         time.sleep(0.05)
-    #     result = ''
-    #     for index, article in enumerate(reversed(articles)):
-    #         if index == 15:
-    #             break
-    #         result += '[{} push] {}\n{}\n\n'.format(
-    #             article.rate, article.title, article.url)
+        index_seqs = Ptt.get_all_index(
+            self.soup, url, PttTechJob.parser_page)  # iterator
+        articles = []
+        for page in index_seqs:
+            try:
+                res = Crawler.rs.get(page, verify=False,
+                                     headers=Crawler.headers)
+                res.raise_for_status()
+            except requests.exceptions.ConnectionError:
+                logging.error('Connection error')
+            else:
+                articles += Ptt.crawler_info(res)
+            time.sleep(0.05)
+        result = ''
+        for index, article in enumerate(reversed(articles)):
+            if index == 15:
+                break
+            result += '[{} push] {}\n{}\n\n'.format(
+                article.rate, article.title, article.url)
 
-    #     return result
+        return result
 
 
 class Movie(Crawler):
