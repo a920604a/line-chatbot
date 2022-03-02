@@ -9,8 +9,8 @@
 
 ###### tags: `tutorials`
 
-## product : use heroku platform https://yuan-line-chatbot.herokuapp.com/callback
-
+## product : [use heroku platform](https://dashboard.heroku.com/apps)
+https://yuan-line-chatbot.herokuapp.com/callback
 
 ## 註冊為Line Developer
 1. 前往[Line Developer](https://developers.line.biz/en/)註冊成為Line deeveloper
