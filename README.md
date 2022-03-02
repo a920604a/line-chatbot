@@ -1,9 +1,3 @@
-<!--
- * @Author: yuan
- * @Date: 2021-04-17 04:13:49
- * @LastEditTime: 2021-04-18 08:29:39
- * @FilePath: /line-chatbot/README.md
--->
 # line bot 實作 django 
 
 
